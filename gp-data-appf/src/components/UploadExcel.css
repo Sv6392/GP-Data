@@ -1,0 +1,62 @@
+/* Container */
+.upload-container {
+  text-align: center;
+  padding: 30px;
+}
+
+/* Title */
+.upload-container h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Upload Box */
+.upload-box {
+  border: 2px dashed #007bff;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  background: #f9fbff;
+  position: relative;
+}
+
+/* Hover effect */
+.upload-box:hover {
+  background: #eef5ff;
+  border-color: #0056b3;
+}
+
+/* Hide default input */
+.upload-box input {
+  display: none;
+}
+
+/* Label */
+.upload-box label {
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Button */
+.upload-btn {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #0056b3, #0096c7);
+}
+
+.upload-btn:active {
+  transform: scale(0.95);
+}

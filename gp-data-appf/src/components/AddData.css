@@ -1,0 +1,105 @@
+/* Container */
+.form-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); /* smoother shadow */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.5px;
+}
+
+/* Grid Layout */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 15px;
+  border-radius: 12px;
+  background: #f8f9fc;
+  transition: all 0.3s ease;
+}
+
+/* Inputs */
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+/* Focus Effect */
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 8px rgba(78, 115, 223, 0.25);
+  outline: none;
+}
+
+/* Scrollbar Styling */
+.form-grid::-webkit-scrollbar {
+  width: 6px;
+}
+.form-grid::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+  border-radius: 10px;
+}
+.form-grid::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Button */
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 25px;
+  background: linear-gradient(90deg, #4e73df, #1cc88a);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3);
+}
+
+/* Button Hover */
+.submit-btn:hover {
+  background: linear-gradient(90deg, #2e59d9, #17a673);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(78, 115, 223, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* Mobile */
+  }
+}
