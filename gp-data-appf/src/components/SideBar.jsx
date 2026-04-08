@@ -1,39 +1,117 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Sidebar.css";
 
 function Sidebar({ setPage }) {
+  const [active, setActive] = useState("home"); // ✅ default home
+  const [openProfile, setOpenProfile] = useState(false);
+
+  const handleClick = (page) => {
+    setActive(page);
+    setPage(page);
+    setOpenProfile(false); // close dropdown on navigation
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   return (
-    <div style={styles.sidebar}>
-      <h3 style={{ color: "#fff" }}>Dashboard</h3>
+    <div className="sidebar">
 
-      <button onClick={() => setPage("upload")}>Upload Excel</button>
-      <button onClick={() => setPage("add")}>Add Data</button>
-      <button onClick={() => setPage("view")}>View Data</button>
-      <button onClick={() => setPage("search")}>Search</button>
-      <button onClick={() => setPage("download")}>Download</button>
+      {/* Header */}
+      <div className="sidebar-header">
+        <div className="logo"><h3>GP</h3></div>
+        <h3>Dashboard</h3>
+      </div>
 
-      <button
-        onClick={() => {
-          localStorage.removeItem("token");
-          window.location.reload();
-        }}
-        style={{ marginTop: "20px", background: "red", color: "#fff" }}
-      >
-        Logout
-      </button>
+      {/* Menu */}
+      <div className="menu">
+
+        {/* ✅ Home */}
+        <div
+          className={`menu-item ${active === "home" ? "active" : ""}`}
+          onClick={() => handleClick("home")}
+        >
+          <i className="fas fa-home"></i>
+          Home
+        </div>
+
+        <div
+          className={`menu-item ${active === "upload" ? "active" : ""}`}
+          onClick={() => handleClick("upload")}
+        >
+          <i className="fas fa-upload"></i>
+          Upload Excel
+        </div>
+
+        <div
+          className={`menu-item ${active === "add" ? "active" : ""}`}
+          onClick={() => handleClick("add")}
+        >
+          <i className="fas fa-plus"></i>
+          Add Data
+        </div>
+
+        <div
+          className={`menu-item ${active === "view" ? "active" : ""}`}
+          onClick={() => handleClick("view")}
+        >
+          <i className="fas fa-eye"></i>
+          View Data
+        </div>
+
+        <div
+          className={`menu-item ${active === "search" ? "active" : ""}`}
+          onClick={() => handleClick("search")}
+        >
+          <i className="fas fa-search"></i>
+          Search
+        </div>
+
+        <div
+          className={`menu-item ${active === "download" ? "active" : ""}`}
+          onClick={() => handleClick("download")}
+        >
+          <i className="fas fa-download"></i>
+          Download
+        </div>
+      </div>
+
+      {/* ✅ Profile Section (Bottom Fixed) */}
+      <div className="profile-section">
+        
+        <div
+          className="profile-box"
+          onClick={() => setOpenProfile(!openProfile)}
+        >
+          <div className="profile-avatar">S</div>
+
+          <div className="profile-info">
+            <span className="profile-name">Suraj</span>
+            <span className="profile-role">Admin</span>
+          </div>
+
+          <i
+            className={`fas ${
+              openProfile ? "fa-chevron-down" : "fa-chevron-up"
+            }`}
+          ></i>
+        </div>
+
+        {/* Dropdown */}
+        {openProfile && (
+          <div className="profile-dropdown">
+            <div className="dropdown-item" onClick={handleLogout}>
+              <i className="fas fa-sign-out-alt"></i>
+              Logout
+            </div>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 }
-
-const styles = {
-  sidebar: {
-    width: "220px",
-    height: "100vh",
-    background: "#2c3e50",
-    display: "flex",
-    flexDirection: "column",
-    padding: "15px",
-    gap: "10px",
-  },
-};
 
 export default Sidebar;

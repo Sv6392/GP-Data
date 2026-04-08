@@ -1,64 +1,102 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import API from "../Api";
-import "./Login.css"; 
+import "./Login.css";
 
-function Login({ setToken }) {   // ✅ receive setToken
+function Login({ setToken }) {
   const [form, setForm] = useState({
     email: "",
-    password: ""
+    password: "",
   });
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
+  // Handle input change
   const handleChange = (e) => {
+    setError(""); // clear error while typing
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async () => {
+  // Handle login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    // ✅ Validation
+    if (!form.email || !form.password) {
+      return setError("Please enter email and password");
+    }
+
     try {
+      setLoading(true);
+      setError("");
+
       const res = await API.post("/auth/login", form);
 
       const token = res.data.token;
 
-      // ✅ Save in localStorage
+      // ✅ Save token
       localStorage.setItem("token", token);
-
-      // 🔥 MOST IMPORTANT FIX
       setToken(token);
 
-      // ✅ Navigate after state update
+      // ✅ Redirect
       navigate("/dashboard");
 
     } catch (err) {
-      alert("Login Failed ❌");
+      console.error("Login Error:", err);
+
+      // ✅ Backend error
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      }
+      // ✅ Server not reachable
+      else if (err.request) {
+        setError("Server not responding ❌");
+      }
+      // ✅ Other errors
+      else {
+        setError("Something went wrong ❌");
+      }
+
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="login-container">
-      <div className="login-card">
+      <form className="login-card" onSubmit={handleLogin}>
         <h2>Login</h2>
 
-        <input 
-          name="email" 
-          placeholder="Email" 
-          onChange={handleChange} 
+        {/* Error Message */}
+        {error && <div className="error-box">{error}</div>}
+
+        <input
+          name="email"
+          type="email"
+          placeholder="Enter Email"
+          value={form.email}
+          onChange={handleChange}
         />
 
-        <input 
-          name="password" 
-          type="password" 
-          placeholder="Password" 
-          onChange={handleChange} 
+        <input
+          name="password"
+          type="password"
+          placeholder="Enter Password"
+          value={form.password}
+          onChange={handleChange}
         />
 
-        <button onClick={handleLogin}>Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
 
         <p>
           Don't have an account? <Link to="/register">Register</Link>
         </p>
-      </div>
+      </form>
     </div>
   );
 }

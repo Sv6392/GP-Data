@@ -1,0 +1,120 @@
+.home {
+  padding: 25px;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #4f46e5, #22c55e);
+  color: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: auto;
+  opacity: 0.9;
+}
+
+/* About */
+.about {
+  margin-bottom: 25px;
+}
+
+.about h2 {
+  margin-bottom: 10px;
+}
+
+.about p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Features */
+.features {
+  margin-bottom: 30px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.feature-card {
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.footer p {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.socials a {
+  text-decoration: none;
+  color: #4f46e5;
+  font-size: 14px;
+}
+
+.about {
+  position: relative;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+
+  /* Background Image */
+  background: linear-gradient(
+      rgba(25, 53, 120, 0.85),
+      rgba(30, 41, 59, 0.9)
+    ),
+    url("https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/BharatNet_logo.png/600px-BharatNet_logo.png");
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
+
+  color: #e2e8f0;
+}
+
+/* Text Styling */
+.about h2 {
+  margin-bottom: 12px;
+  color: #38bdf8;
+}
+
+.about p {
+  max-width: 100%;
+  line-height: 1.7;
+  font-size: 14px;
+    color: #cbd5f5;
+}
