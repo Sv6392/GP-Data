@@ -222,27 +222,7 @@ router.post("/add", (req, res) => {
   });
 });
 
-// // -------------------- 3. GET ALL DATA --------------------
-// router.get("/", (req, res) => {
-//   db.query("SELECT * FROM gp_reports ORDER BY id DESC", (err, result) => {
-//     if (err) return res.status(500).send(err);
-//     res.json(result);
-//   });
-// });
-// router.get("/", (req, res) => {
-//   const page = parseInt(req.query.page) || 1;
-//   const limit = parseInt(req.query.limit) || 10; // same as frontend
-//   const offset = (page - 1) * limit;
 
-//   // MySQL safe LIMIT with OFFSET
-//   const query = `SELECT * FROM gp_reports ORDER BY id DESC LIMIT ${offset}, ${limit}`;
-
-//   db.query(query, (err, result) => {
-//     if (err) return res.status(500).send(err);
-
-//     res.json(result); // returns array, frontend can use as-is
-//   });
-// });
 router.get("/", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
@@ -409,27 +389,7 @@ router.get("/gps", (req, res) => {
   }
 });
 
-// -------------------- 4. SEARCH (BLOCK + GP) --------------------
-// router.get("/search", (req, res) => {
-//   const { block, gp } = req.query;
 
-//   let sql = "SELECT * FROM gp_reports WHERE 1=1";
-//   const params = [];
-
-//   if (block) {
-//     sql += " AND BLOCK LIKE ?";
-//     params.push(`%${block}%`);
-//   }
-//   if (gp) {
-//     sql += " AND GP_LOCATION_NAME LIKE ?";
-//     params.push(`%${gp}%`);
-//   }
-
-//   db.query(sql, params, (err, result) => {
-//     if (err) return res.status(500).send(err);
-//     res.json(result);
-//   });
-// });
 router.get("/search", (req, res) => {
   const block = req.query.block || "";
   const gp = req.query.gp || "";
@@ -450,8 +410,6 @@ router.get("/search", (req, res) => {
     params.push(`%${gp}%`);
   }
 
-  // console.log("SQL:", sql);
-  // console.log("Params:", params);
 
   db.query(sql, params, (err, result) => {
     if (err) {
@@ -501,93 +459,7 @@ router.get("/search", (req, res) => {
     });
   });
 });
-// // -------------------- 4. SEARCH (BLOCK + GP) --------------------
-// router.get("/search", (req, res) => {
-//   const { block, gp } = req.query;
 
-//   let sql = "SELECT * FROM gp_reports WHERE 1=1";
-//   const params = [];
-
-//   // ✅ Exact match for block if provided
-//   if (block) {
-//     sql += " AND BLOCK = ?";
-//     params.push(block);
-//   }
-
-//   // ✅ Exact match for GP name if provided
-//   if (gp) {
-//     sql += " AND GP_LOCATION_NAME = ?";
-//     params.push(gp);
-//   }
-
-//   db.query(sql, params, (err, result) => {
-//     if (err) {
-//       console.error("Search Error:", err);
-//       return res.status(500).send("Search failed ❌");
-//     }
-
-//     if (result.length === 0) {
-//       return res.status(200).json([]); // return empty array if no match
-//     }
-
-//     res.json(result); // return matching rows
-//   });
-// });
-
-// -------------------- 4. SEARCH (BLOCK + GP + DOWNLOAD) --------------------
-
-// router.get("/search/download", (req, res) => {
-//   const { block, gp } = req.query;
-
-//   let sql = "SELECT * FROM gp_reports WHERE 1=1";
-//   const params = [];
-
-//   if (block) {
-//     sql += " AND BLOCK = ?";
-//     params.push(block);
-//   }
-
-//   if (gp) {
-//     sql += " AND GP_LOCATION_NAME = ?";
-//     params.push(gp);
-//   }
-
-//   db.query(sql, params, (err, result) => {
-//     if (err) {
-//       console.error("Download Error:", err);
-//       return res.status(500).send("Download failed ❌");
-//     }
-
-//     if (result.length === 0) {
-//       return res.status(404).send("No data found");
-//     }
-
-//     // ✅ Convert JSON to worksheet
-//     const worksheet = XLSX.utils.json_to_sheet(result);
-
-//     // ✅ Create workbook
-//     const workbook = XLSX.utils.book_new();
-//     XLSX.utils.book_append_sheet(workbook, worksheet, "Search Data");
-
-//     // ✅ Write file buffer
-//     const buffer = XLSX.write(workbook, {
-//       type: "buffer",
-//       bookType: "xlsx",
-//     });
-
-//     // ✅ Send as download
-//     res.setHeader(
-//       "Content-Disposition",
-//       "attachment; filename=GP_Report.xlsx"
-//     );
-//     res.setHeader(
-//       "Content-Type",
-//       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-//     );
-
-//     res.send(buffer);
-//   });
-// });
 
 // -------------------- 5. DOWNLOAD EXCEL --------------------
 router.get("/download", async (req, res) => {

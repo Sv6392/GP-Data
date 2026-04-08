@@ -10,12 +10,12 @@ router.post("/register", async (req, res) => {
   try {
     const { name, email, password, contact } = req.body;
 
-    // Validation
+    // ✅ Validation
     if (!name || !email || !password || !contact) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Check if user exists
+    // ✅ Check if user exists
     findUserByEmail(email, async (err, result) => {
       if (err) {
         console.error("DB Error:", err);
@@ -23,7 +23,9 @@ router.post("/register", async (req, res) => {
       }
 
       if (result.length > 0) {
-        return res.status(400).json({ message: "User already exists" });
+        return res.status(400).json({ 
+          message: "User already exists with this email ❌" 
+        });
       }
 
       // ✅ Hash password
@@ -47,6 +49,7 @@ router.post("/register", async (req, res) => {
         }
       );
     });
+
   } catch (error) {
     console.error("Register Error:", error);
     res.status(500).json({ message: "Server error" });
@@ -60,7 +63,9 @@ router.post("/login", async (req, res) => {
 
     // ✅ Validation
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and Password are required" });
+      return res.status(400).json({ 
+        message: "Email and Password are required" 
+      });
     }
 
     // ✅ Find user
@@ -70,26 +75,31 @@ router.post("/login", async (req, res) => {
         return res.status(500).json({ message: "Database error" });
       }
 
+      // ❌ Incorrect Email
       if (result.length === 0) {
-        return res.status(400).json({ message: "User not found" });
+        return res.status(400).json({ 
+          message: "Incorrect email ❌" 
+        });
       }
 
       const user = result[0];
 
-      // ✅ Compare password
+      // ❌ Incorrect Password
       const valid = await bcrypt.compare(password, user.password);
       if (!valid) {
-        return res.status(400).json({ message: "Invalid password" });
+        return res.status(400).json({ 
+          message: "Incorrect password ❌" 
+        });
       }
 
-      // ✅ Generate JWT token
+      // ✅ Generate JWT
       const token = jwt.sign(
         { id: user.id, email: user.email },
         SECRET,
         { expiresIn: "1d" }
       );
 
-      // ✅ Remove password before sending response
+      // ✅ Remove password
       const { password: _, ...safeUser } = user;
 
       res.json({
