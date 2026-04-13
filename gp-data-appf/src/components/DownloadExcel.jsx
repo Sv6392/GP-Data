@@ -28,7 +28,7 @@ function DownloadExcel() {
       </p>
 
       <button className="download-btn" onClick={handleDownload}>
-        ⬇ Download Excel
+        Download Excel
       </button>
     </div>
   );

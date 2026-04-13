@@ -1,62 +1,116 @@
 /* Container */
 .upload-container {
   text-align: center;
-  padding: 30px;
+  padding: 40px;
+  border-radius: 16px;
+
+  /* Modern dark gradient */
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Title */
 .upload-container h3 {
   margin-bottom: 20px;
-  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+  color: #f8fafc;
 }
 
 /* Upload Box */
 .upload-box {
-  border: 2px dashed #007bff;
-  border-radius: 12px;
-  padding: 30px;
-  margin-bottom: 20px;
+  border: 2px dashed rgba(59, 130, 246, 0.6);
+  border-radius: 14px;
+  padding: 35px;
+  margin-bottom: 25px;
   cursor: pointer;
-  transition: 0.3s;
-  background: #f9fbff;
+  transition: all 0.35s ease;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+
   position: relative;
 }
 
 /* Hover effect */
 .upload-box:hover {
-  background: #eef5ff;
-  border-color: #0056b3;
+  background: rgba(59, 130, 246, 0.08);
+  border-color: #3b82f6;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
 
-/* Hide default input */
+/* Hide input */
 .upload-box input {
   display: none;
 }
 
 /* Label */
 .upload-box label {
-  color: #555;
+  color: #cbd5f5;
   font-size: 16px;
   cursor: pointer;
+  display: inline-block;
+}
+
+/* Optional icon effect (if text present) */
+.upload-box label::before {
+  content: "📁 ";
+  font-size: 20px;
 }
 
 /* Button */
 .upload-btn {
-  background: linear-gradient(135deg, #007bff, #00c6ff);
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
   border: none;
   color: white;
-  padding: 12px 25px;
-  font-size: 16px;
-  border-radius: 8px;
+  padding: 13px 28px;
+  font-size: 15px;
+  border-radius: 999px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.35s ease;
+
+  /* Glow */
+  box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+
+  position: relative;
+  overflow: hidden;
 }
 
+/* Shine effect */
+.upload-btn::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: 0.6s;
+}
+
+/* Hover shine */
+.upload-btn:hover::before {
+  transform: translateX(100%);
+}
+
+/* Hover */
 .upload-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #0056b3, #0096c7);
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(135deg, #2563eb, #0891b2);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
 }
 
+/* Click */
 .upload-btn:active {
   transform: scale(0.95);
 }

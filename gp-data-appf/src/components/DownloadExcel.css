@@ -1,41 +1,73 @@
 /* Container */
 .download-container {
   text-align: center;
-  padding: 30px;
+  padding: 40px;
+  border-radius: 16px;
+
+  /* Glassmorphism background */
+  background: linear-gradient(
+      rgba(15, 23, 42, 0.85),
+      rgba(30, 41, 59, 0.9)
+    ),
+    url("https://images.unsplash.com/photo-1521791136064-7986c2920216");
+
+  background-size: cover;
+  background-position: center;
+
+  color: #e2e8f0;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Title */
 .download-container h3 {
-  margin-bottom: 10px;
-  color: #333;
+  margin-bottom: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #f8fafc;
+  letter-spacing: 0.5px;
 }
 
 /* Description text */
 .download-text {
-  margin-bottom: 20px;
-  color: #666;
-  font-size: 14px;
+  margin-bottom: 25px;
+  color: #cbd5f5;
+  font-size: 15px;
 }
 
 /* Button */
 .download-btn {
-  background: linear-gradient(135deg, #28a745, #20c997);
+  position: relative;
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
   border: none;
   color: white;
-  padding: 12px 25px;
+  padding: 14px 30px;
   font-size: 16px;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.35s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  /* Glow effect */
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
 }
 
 /* Hover effect */
 .download-btn:hover {
-  background: linear-gradient(135deg, #218838, #17a2b8);
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #16a34a, #0891b2);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.7);
 }
 
 /* Click effect */
 .download-btn:active {
   transform: scale(0.95);
+}
+
+/* Optional: Icon inside button */
+.download-btn::before {
+  content: "⬇";
+  margin-right: 8px;
+  font-size: 16px;
 }

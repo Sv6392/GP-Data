@@ -21,6 +21,7 @@
   max-width: 600px;
   margin: auto;
   opacity: 0.9;
+  
 }
 
 /* About */
@@ -94,27 +95,23 @@
 
   /* Background Image */
   background: linear-gradient(
-      rgba(25, 53, 120, 0.85),
-      rgba(30, 41, 59, 0.9)
+      to right,
+      rgba(62, 72, 96, 0.8) 40%,
+      rgba(22, 37, 71, 0.2) 70%,
+      transparent
     ),
-    url("https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/BharatNet_logo.png/600px-BharatNet_logo.png");
-
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
-
-  color: #e2e8f0;
+    url("../../Picture1.jpg");
 }
 
 /* Text Styling */
 .about h2 {
   margin-bottom: 12px;
-  color: #38bdf8;
+  color: #32a1bd;
 }
 
 .about p {
   max-width: 100%;
   line-height: 1.7;
   font-size: 14px;
-    color: #cbd5f5;
+    color: black;
 }

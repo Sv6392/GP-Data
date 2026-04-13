@@ -401,7 +401,7 @@ router.get("/search", (req, res) => {
   // ✅ Filter by Block
   if (block) {
     sql += " AND BLOCK LIKE ?";
-    params.push(`%${block}%`); // partial match for Postman testing
+    params.push(`%${block}%`); 
   }
 
   // ✅ Filter by GP

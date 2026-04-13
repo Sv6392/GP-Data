@@ -7,7 +7,7 @@ function Home() {
 
       {/* Hero Section */}
       <div className="hero">
-        <h1>BharatNet Dashboard 🇮🇳</h1>
+        <h1>BharatNet MP GP Dashboard</h1>
         <p>
           Empowering rural India with high-speed broadband connectivity.
           Monitor, manage and analyze GP-level network infrastructure efficiently.
@@ -17,6 +17,7 @@ function Home() {
       {/* About Section */}
       <div className="about">
         <h2>About BharatNet</h2>
+        <b>
         <p>
             BharatNet is one of the largest rural telecommunications projects in the world,
             launched by the Government of India to bridge the digital divide between urban
@@ -37,6 +38,7 @@ function Home() {
             provides real-time insights, efficient data handling, and seamless reporting for
             better decision-making and operations.
         </p>
+        </b>
         </div>
       {/* Features */}
       <div className="features">
@@ -51,10 +53,10 @@ function Home() {
 
       {/* Footer */}
       <div className="footer">
-        <p>© 2026 BharatNet Dashboard | Developed by Suraj Verma</p>
+        <p><b>© 2026 BharatNet GP Dashboard | Developed by Suraj Verma</b></p>
 
         <div className="socials">
-          <a href="tel:+916392863417">🌐 Contact Number</a>
+          <a >🌐Contact Number:- +91 6392863417</a>
           <a href="https://www.linkedin.com/in/suraj-verma1410/">💼 LinkedIn</a>
           <a href="https://github.com/Sv6392">🐙 GitHub</a>
         </div>

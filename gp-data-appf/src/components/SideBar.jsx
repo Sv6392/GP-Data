@@ -21,8 +21,7 @@ function Sidebar({ setPage }) {
 
       {/* Header */}
       <div className="sidebar-header">
-        <div className="logo"><h3>GP</h3></div>
-        <h3>Dashboard</h3>
+        <div className="logo"><h3>GP Dashboard</h3></div>
       </div>
 
       {/* Menu */}
